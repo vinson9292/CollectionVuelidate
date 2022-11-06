@@ -1,26 +1,15 @@
 <template>
-    <!-- <h2>Text Input</h2> -->
-    <!-- <input v-model="text"> {{ text }} -->
     <h2>案號 : {{ caseNo }}</h2><br />
-    <!-- <div >
-        <label for="txtName">Name</label>
-        <input id="txtName" type="text" placeholder="please input..." v-model="name" />
-        <label for="txtAge">Age</label>
-        <input id="txtAge" type="text" placeholder="please input..." v-model="age" />
-        <label for="txtAddress">Address</label>
-        <input id="txtAddress" type="text" placeholder="please input..." v-model="address" />
-        <label v-if="name">Hello : {{ name }}</label> <label v-if="age != 0">Age : {{ age }}</label>
-        <label v-if="address">Address : {{ address }}</label>
-    </div> -->
     <div>
-        <PropertyList :properts="properts" />
+        <PropertyList :properts="vm.properts" />
+        <button>add</button>
+        <button v-bind:click="add">check</button>
     </div>
-
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs } from 'vue'
 import PropertyList from './PropertyList.vue'
-import type { IProperty } from '../types/IProperty'
+import { Property } from '../types/Property'
 export default defineComponent({
     name: 'MainCase',
     components: {
@@ -33,23 +22,22 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const name = ref('');
-        const age = ref(0);
-        const address = ref('');
         const caseNo = props.caseNo;
-        const properts = reactive<{ properts: IProperty[] }>({
+        const vm = reactive({
             properts: [
-                { ptype: "123", area: 123, price: 123, envalue: 123 },
-                { ptype: "456", area: 456, price: 456, envalue: 456 },
-                { ptype: "789", area: 789, price: 789, envalue: 789 },
+                { type: "", area: 0, price: 0, envalue: 0 },
+                { type: "456", area: 456, price: 456, envalue: 456 },
+                { type: "789", area: 789, price: 789, envalue: 789 },
             ]
         });
+        const add = function (){
+            vm.properts.push(new Property())
+        }
         return {
+            vm,
             caseNo,
-            name,
-            age,
-            address,
-            ...toRefs(properts)
+            ...toRefs(vm.properts),
+            add
         }
     }
 })
