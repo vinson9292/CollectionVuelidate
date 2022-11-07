@@ -1,8 +1,12 @@
 <template>
     <table>
         <PropertyItem 
-        v-for="property in properts" 
+        v-for="(property,index) in properts" 
         :property="property"
+        :addProperty="addProperty"
+        :deleteProperty="deleteProperty"
+        :saveProperty="saveProperty"
+        :index="index"
         />
     </table>
 </template>
@@ -14,6 +18,6 @@ export default defineComponent({
     components: {
         PropertyItem
     },
-    props: ['properts']
+    props: ['properts','addProperty','deleteProperty','saveProperty']
 })
 </script>
