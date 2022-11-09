@@ -1,23 +1,31 @@
 <template>
     <tr>
         <td>
-            <input type="text" v-model="property.type" @blur="v$.type.$touch" />
-            <div v-if="v$.type.$error">type field has an error.</div>
+            <input v-model="property.type">
+            <div class="input-errors" v-for="error of v$.type.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
         </td>
         <td>
-            <input type="text" v-model="property.area" @blur="v$.area.$touch" />
-            <div v-if="v$.area.$error">type field has an error.</div>
+            <input v-model="property.area">
+            <div class="input-errors" v-for="error of v$.area.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
         </td>
         <td>
-            <input type="text" v-model="property.price" @blur="v$.price.$touch" />
-            <div v-if="v$.price.$error">type field has an error.</div>
+            <input v-model="property.price" />
+            <div class="input-errors" v-for="error of v$.price.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
         </td>
         <td>
-            <input type="text" v-model="property.envalue" @blur="v$.envalue.$touch" />
-            <div v-if="v$.envalue.$error">type field has an error.</div>
+            <input type="text" v-model="property.envalue" />
+            <div class="input-errors" v-for="error of v$.envalue.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
         </td>
         <td>
-            <button @click="()=>deleteProperty">Del</button>
+            <button @deleteProperty="() => deleteProperty">Del</button>
         </td>
     </tr>
 </template>

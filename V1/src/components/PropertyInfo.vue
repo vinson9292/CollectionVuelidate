@@ -1,21 +1,22 @@
 <template>
-    <h2>案號 : {{ caseNo }}</h2><br />
-    <div>
+    <div class="listBorder">
+        <h4>案號 : {{ caseNo }}</h4>
         <PropertyList :properts="vm.properts" />
-        <button v-bind:click="addProperty">add</button>
-        <button v-bind:click="deleteProperty">delete</button>
-        <button v-bind:click="saveProperty">save</button>
+        <button v-on:click="addProperty">add</button>
+        <button v-on:deleteProperty="deleteProperty">delete</button>
+        <button v-on:click="saveProperty">save</button>
     </div>
+
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 import PropertyList from './PropertyList.vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 
 export default defineComponent({
-    name: 'MainCase',
+    name: 'PropertyInfo',
     components: {
         PropertyList
     },
@@ -28,39 +29,30 @@ export default defineComponent({
     setup(props) {
         const caseNo = props.caseNo;
         const vm = reactive({
-            properts: [
-                { type: "", area: 0, price: 0, envalue: 0 },
-                { type: "456", area: 456, price: 456, envalue: 456 },
-                { type: "789", area: 789, price: 789, envalue: 789 },
-            ]
+            properts: [new Property()]
         });
-        const addProperty = () => {
+        const addProperty = async () => {
             console.log('addProperty');
-            vm.properts.push(new Property())
+            console.log('v$',v$)
+            let response = await v$.value.$validate();
+            if(response)
+            {
+                console.log(vm);
+                vm.properts.push(new Property()) 
+            }
         }
         const deleteProperty = (index: number): void => {
             console.log('property delete index', index);
             vm.properts.splice(index, 1);
         }
-        const saveProperty = () => {
-            v$.value.$validate();
-        }
-        // 回车的事件的回调函数,用来添加数据
-        const add = () => {
-            vm.properts.push(new Property())
-            // 获取文本框中输入的数据,判断不为空
-            //   const text = title.value
-            //   if (!text.trim()) return
-            //   // 此时有数据,创建一个todo对象
-            //   const todo = {
-            //     id: Date.now(),
-            //     title: text,
-            //     isCompleted: false,
-            //   }
-            //   // 调用方法addTodo的方法
-            //   props.addTodo(todo)
-            //   // 清空文本框
-            //   title.value = ''
+        const saveProperty = async () => {
+            console.log('v$',v$) 
+            let response = await v$.value.$validate();
+            if(response)
+            {
+                console.log(vm);
+                vm.properts.push(new Property()) 
+            }
         }
         const state = reactive(vm.properts[0])
         const rules = {
@@ -82,3 +74,9 @@ export default defineComponent({
     }
 })
 </script>
+<style>
+.listBorder{
+    margin-top: 10px;
+    border: 15px;
+}
+</style>
