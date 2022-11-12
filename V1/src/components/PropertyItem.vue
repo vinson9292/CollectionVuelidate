@@ -25,7 +25,7 @@
             </div>
         </td>
         <td>
-            <button @deleteProperty="() => deleteProperty">Del</button>
+            <button @click="delProperty">Del</button>
         </td>
     </tr>
 </template>
@@ -60,15 +60,15 @@ export default defineComponent({
             envalue: { required }, // Matches props.property.envalue
         }
         const v$ = useVuelidate(rules, state)
-        const deleteProperty = () => {
+        const delProperty = () => {
             if (window.confirm('確認要刪除?')) {
                 props.deleteProperty(props.index)
             }
         }
         return {
             state,
-            v$,
-            deleteProperty
+            delProperty,
+            v$
         }
     }
 })

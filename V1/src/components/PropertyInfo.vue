@@ -1,12 +1,11 @@
 <template>
     <div class="listBorder">
         <h4>案號 : {{ caseNo }}</h4>
-        <PropertyList :properts="vm.properts" />
+        <PropertyList :properts="vm.properts" :deleteProperty="deleteProperty" />
         <button v-on:click="addProperty">add</button>
-        <button v-on:deleteProperty="deleteProperty">delete</button>
         <button v-on:click="saveProperty">save</button>
+        <button v-on:click="deleteAllProperty">cleraAll</button>
     </div>
-
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
@@ -33,25 +32,26 @@ export default defineComponent({
         });
         const addProperty = async () => {
             console.log('addProperty');
-            console.log('v$',v$)
+            console.log('v$', v$)
             let response = await v$.value.$validate();
-            if(response)
-            {
+            if (response) {
                 console.log(vm);
-                vm.properts.push(new Property()) 
+                vm.properts.push(new Property())
             }
         }
-        const deleteProperty = (index: number): void => {
-            console.log('property delete index', index);
+        const deleteAllProperty = () => {
+            vm.properts = [];
+            vm.properts.push(new Property());
+        }
+        const deleteProperty = (index: number) => {
             vm.properts.splice(index, 1);
         }
         const saveProperty = async () => {
-            console.log('v$',v$) 
+            console.log('v$', v$)
             let response = await v$.value.$validate();
-            if(response)
-            {
+            if (response) {
                 console.log(vm);
-                vm.properts.push(new Property()) 
+                vm.properts.push(new Property())
             }
         }
         const state = reactive(vm.properts[0])
@@ -67,6 +67,7 @@ export default defineComponent({
             caseNo,
             ...toRefs(vm.properts),
             addProperty,
+            deleteAllProperty,
             deleteProperty,
             saveProperty,
             v$
@@ -75,7 +76,7 @@ export default defineComponent({
 })
 </script>
 <style>
-.listBorder{
+.listBorder {
     margin-top: 10px;
     border: 15px;
 }
