@@ -1,25 +1,25 @@
 <template>
     <tr>
         <td>
-            <input v-model="property.type">
+            <input v-model="property.type" @blur="v$.type.$touch">
             <div class="input-errors" v-for="error of v$.type.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
         </td>
         <td>
-            <input v-model="property.area">
+            <input v-model="property.area" @blur="v$.area.$touch">
             <div class="input-errors" v-for="error of v$.area.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
         </td>
         <td>
-            <input v-model="property.price" />
+            <input v-model="property.price" @blur="v$.price.$touch" />
             <div class="input-errors" v-for="error of v$.price.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
         </td>
         <td>
-            <input type="text" v-model="property.envalue" />
+            <input type="text" v-model="property.envalue" @blur="v$.envalue.$touch" />
             <div class="input-errors" v-for="error of v$.envalue.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
@@ -30,10 +30,10 @@
     </tr>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, toRefs, toRef } from 'vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import { required, minValue, requiredIf, helpers } from '@vuelidate/validators'
 
 export default defineComponent({
     name: 'PropertyItem',
@@ -53,16 +53,22 @@ export default defineComponent({
     },
     setup(props) {
         const state = reactive(props.property)
+        const min = (param: number) =>
+            helpers.withParams(
+                { type: 'min', value: param },
+                (value: number) => !helpers.req(value) || value > param
+            )
         const rules = {
             type: { required }, // Matches props.property.type
-            area: { required }, // Matches props.property.area
-            price: { required }, // Matches props.property.price
-            envalue: { required }, // Matches props.property.envalue
+            area: { required, min: helpers.withMessage('必須大於11', min(11)) }, // Matches props.property.area
+            price: { required, min: helpers.withMessage('必須大於10', min(10)) }, // Matches props.property.price
+            envalue: { required, min: helpers.withMessage('必須大於9', min(9)) }, // Matches props.property.envalue
         }
+
         const v$ = useVuelidate(rules, state)
         const delProperty = () => {
             if (window.confirm('確認要刪除?')) {
-                props.deleteProperty(props.index)
+                props.deleteProperty(props.index);
             }
         }
         return {

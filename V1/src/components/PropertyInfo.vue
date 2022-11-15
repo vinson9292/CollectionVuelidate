@@ -12,7 +12,7 @@ import { defineComponent, reactive, toRefs } from 'vue'
 import PropertyList from './PropertyList.vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { required, email } from '@vuelidate/validators'
+import { required, email,minValue } from '@vuelidate/validators'
 
 export default defineComponent({
     name: 'PropertyInfo',
@@ -30,10 +30,13 @@ export default defineComponent({
         const vm = reactive({
             properts: [new Property()]
         });
+
         const addProperty = async () => {
             console.log('addProperty');
             console.log('v$', v$)
             let response = await v$.value.$validate();
+            console.log('response',response);
+            console.log('v$.value.$errors',v$.value.$errors)
             if (response) {
                 console.log(vm);
                 vm.properts.push(new Property())
@@ -49,19 +52,15 @@ export default defineComponent({
         const saveProperty = async () => {
             console.log('v$', v$)
             let response = await v$.value.$validate();
+            console.log('response',response);
+            console.log('v$.value.$errors',v$.value.$errors)
             if (response) {
                 console.log(vm);
                 vm.properts.push(new Property())
             }
         }
-        const state = reactive(vm.properts[0])
-        const rules = {
-            type: { required }, // Matches properts.property.type
-            area: { required }, // Matches properts.property.area
-            price: { required }, // Matches properts.property.price
-            envalue: { required }, // Matches properts.property.envalue
-        }
-        const v$ = useVuelidate(rules, state)
+        
+        const v$ = useVuelidate()
         return {
             vm,
             caseNo,
