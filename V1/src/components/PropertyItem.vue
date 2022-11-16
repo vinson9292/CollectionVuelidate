@@ -31,15 +31,15 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, toRef } from 'vue'
-import { Property } from '../types/Property'
+import type { IProperty } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { required, minValue, requiredIf, helpers } from '@vuelidate/validators'
+import { required, helpers } from '@vuelidate/validators'
 
 export default defineComponent({
     name: 'PropertyItem',
     props: {
         property: {
-            type: Property,
+            type: Object as () => IProperty,
             required: true,
         },
         deleteProperty: {

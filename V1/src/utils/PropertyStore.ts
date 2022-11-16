@@ -1,7 +1,7 @@
-import type { Property } from '../types/Property'
-export function savePropertys(propertys: Property[]) {
+import type { IProperty } from '../types/Property'
+export function savePropertys(propertys: IProperty[]) {
   localStorage.setItem('property_key', JSON.stringify(propertys))
 }
-export function readPropertys(): Property[] {
+export function readPropertys(): IProperty[] {
   return JSON.parse(localStorage.getItem('property_key') || '[]')
 }

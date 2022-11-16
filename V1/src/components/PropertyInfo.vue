@@ -8,11 +8,11 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import PropertyList from './PropertyList.vue'
-import { Property } from '../types/Property'
+import type { IProperty } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { required, email,minValue } from '@vuelidate/validators'
+import { savePropertys, readPropertys } from '../utils/PropertyStore'
 
 export default defineComponent({
     name: 'PropertyInfo',
@@ -27,40 +27,42 @@ export default defineComponent({
     },
     setup(props) {
         const caseNo = props.caseNo;
-        const vm = reactive({
-            properts: [new Property()]
+        const vm = reactive<{ properts: IProperty[] }>({
+            properts: []
         });
 
         const addProperty = async () => {
-            console.log('addProperty');
-            console.log('v$', v$)
             let response = await v$.value.$validate();
-            console.log('response',response);
-            console.log('v$.value.$errors',v$.value.$errors)
             if (response) {
-                console.log(vm);
-                vm.properts.push(new Property())
+                vm.properts.push({} as IProperty)
             }
         }
         const deleteAllProperty = () => {
             vm.properts = [];
-            vm.properts.push(new Property());
+            vm.properts.push({} as IProperty);
         }
         const deleteProperty = (index: number) => {
             vm.properts.splice(index, 1);
         }
         const saveProperty = async () => {
-            console.log('v$', v$)
             let response = await v$.value.$validate();
-            console.log('response',response);
-            console.log('v$.value.$errors',v$.value.$errors)
+            console.log('response', response);
+            console.log('v$.value.$errors', v$.value.$errors)
             if (response) {
                 console.log(vm);
-                vm.properts.push(new Property())
+                savePropertys(vm.properts);
+                vm.properts.push({} as IProperty)
             }
         }
-        
+
         const v$ = useVuelidate()
+        onMounted(() => {
+            setTimeout(() => {
+                vm.properts = readPropertys();
+            }, 500)
+        })
+
+        // watch(() => vm.properts, savePropertys, { deep: true })
         return {
             vm,
             caseNo,
