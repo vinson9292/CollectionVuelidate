@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import PropertyList from './PropertyList.vue'
-import type { IProperty } from '../types/Property'
+import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
 import { savePropertys, readPropertys } from '../utils/PropertyStore'
 
@@ -27,19 +27,19 @@ export default defineComponent({
     },
     setup(props) {
         const caseNo = props.caseNo;
-        const vm = reactive<{ properts: IProperty[] }>({
+        const vm = reactive<{ properts: Array<Property> }>({
             properts: []
         });
 
         const addProperty = async () => {
             let response = await v$.value.$validate();
             if (response) {
-                vm.properts.push({} as IProperty)
+                vm.properts.push(new Property())
             }
         }
         const deleteAllProperty = () => {
-            vm.properts = [];
-            vm.properts.push({} as IProperty);
+            vm.properts = new Array<Property>;
+            vm.properts.push(new Property());
         }
         const deleteProperty = (index: number) => {
             vm.properts.splice(index, 1);
@@ -51,13 +51,13 @@ export default defineComponent({
             if (response) {
                 console.log(vm);
                 savePropertys(vm.properts);
-                vm.properts.push({} as IProperty)
+                vm.properts.push(new Property())
             }
         }
 
         const v$ = useVuelidate()
         onMounted(() => {
-            setTimeout(() => {
+            setTimeout(() => {        
                 vm.properts = readPropertys();
             }, 500)
         })
