@@ -12,7 +12,7 @@ import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import PropertyList from './PropertyList.vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { savePropertys, readPropertys } from '../utils/PropertyStore'
+import { savePropertys, readPropertys,saveItems,readItems,nameOf} from '../utils/PropertyStore'
 
 export default defineComponent({
     name: 'PropertyInfo',
@@ -50,7 +50,8 @@ export default defineComponent({
             console.log('v$.value.$errors', v$.value.$errors)
             if (response) {
                 console.log(vm);
-                savePropertys(vm.properts);
+                // savePropertys(vm.properts);
+                saveItems('propertyList',vm.properts);
                 vm.properts.push(new Property())
             }
         }
@@ -58,7 +59,7 @@ export default defineComponent({
         const v$ = useVuelidate()
         onMounted(() => {
             setTimeout(() => {        
-                vm.properts = readPropertys();
+                vm.properts = readItems('propertyList');
             }, 500)
         })
 
