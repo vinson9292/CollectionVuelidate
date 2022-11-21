@@ -1,5 +1,5 @@
 import type { IBase } from "./IBase";
-export interface IAppraisal extends IBase {
+export interface IAppraisalBy extends IBase {
     ApprisaledBy: string;
     TotalPrice: number;
 }

@@ -1,6 +1,6 @@
 import { Guid } from 'guid-ts';
-import type { IAppraisal } from '../types/Interface/IAppraisal'
-export class Appraisal implements IAppraisal {
+import type { IAppraisalBy } from './Interface/IAppraisalBy'
+export class AppraisalBy implements IAppraisalBy {
     constructor() {
         this.sid = 0;
         this.fkCaseNo = Guid.newGuid().toString();
