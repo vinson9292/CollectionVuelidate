@@ -12,7 +12,7 @@ import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import PropertyList from './PropertyList.vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { savePropertys, readPropertys,saveItems,readItems,nameOf} from '../utils/PropertyStore'
+import { savePropertys, readPropertys,saveItems,readItems,nameOf} from '../utils/RecommentdationStoreonStore'
 
 export default defineComponent({
     name: 'PropertyInfo',

@@ -1,14 +1,14 @@
 import { Guid } from 'guid-ts';
 import type { ICustomerInfo } from '../types/Interface/ICustomerInfo'
 import { Address } from './Address';
-import { DeedType } from './Constant';
+import { DeedTypeEnum } from './Constant';
 export class CustomerInfo implements ICustomerInfo {
     constructor() {
         this.ReportNo='';
         this.Brach='';
         this.FullNameOfOwnship='';
         this.BorrowerName='';
-        this.DeedType = DeedType.HardTitleDeed;
+        this.DeedType = DeedTypeEnum.HardTitleDeed;
         this.DeedNo='';
         this.Propertype='';
         this.JointBowwer='';
@@ -24,7 +24,7 @@ export class CustomerInfo implements ICustomerInfo {
     Brach: string;
     FullNameOfOwnship: string;
     BorrowerName: string;
-    DeedType: DeedType;
+    DeedType: DeedTypeEnum;
     DeedNo: string;
     Propertype: string;
     JointBowwer: string;
@@ -35,5 +35,4 @@ export class CustomerInfo implements ICustomerInfo {
     fkCaseNo: string;
     createDate: Date;
     updateDate: Date;
-
 }

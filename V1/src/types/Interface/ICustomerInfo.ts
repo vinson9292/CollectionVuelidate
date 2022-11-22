@@ -1,6 +1,6 @@
 import type { IBase } from "./IBase";
 import type { Address } from "../Address";
-import type { DeedType } from "../Constant";
+import type { DeedTypeEnum } from "../Constant";
 export interface ICustomerInfo extends IBase {
     ReportNo: string;
     Brach: string;

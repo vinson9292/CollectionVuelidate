@@ -11,11 +11,11 @@ export class Checking implements IChecking {
         this.PriceSqm = 0;
         this.PropertyValue = 0;
     }
+    
     PropertyType: string;
     SizeSqm: number;
     PriceSqm: number;
     PropertyValue: number;
-
     sid: number;
     fkCaseNo: string
     createDate: Date;
