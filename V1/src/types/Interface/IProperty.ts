@@ -1,5 +1,4 @@
-import type { IBase } from "./IBase";
-export interface IProperty extends IBase {
+export interface IProperty {
     type?: string;
     area?: number;
     price?: number;

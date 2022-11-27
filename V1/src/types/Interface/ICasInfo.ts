@@ -1,8 +1,7 @@
-import type { IBase } from "./IBase";
 import type { IAppraisalBy } from "./IAppraisalBy";
 import type { IProperty } from "./IProperty";
 import type { IChecking } from "./IChecking";
-export interface ICasInfo extends IBase,IAppraisalBy,IProperty,IChecking {
+export interface ICasInfo extends IAppraisalBy,IProperty,IChecking {
     PurchasedPropertyStstus?: string;
     MainBorrowerStatus?: string;
     FirstBuyer?: string;

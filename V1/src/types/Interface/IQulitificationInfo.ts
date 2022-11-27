@@ -1,7 +1,6 @@
-import type { IBase } from "./IBase";
 import type { OccupancyStateEnum, MortgageTypeEnum } from "../Constant"
 import type { QualityList } from "../QualityList"
-export interface IQulitificationInfo extends IBase {
+export interface IQulitificationInfo {
     QualityList: QualityList;
     Occupancy?: OccupancyStateEnum;
     RentTenatName?: string;

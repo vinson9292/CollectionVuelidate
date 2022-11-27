@@ -1,43 +1,31 @@
+import { Base } from './Base'
 import type { IAppraisalBy } from './Interface/IAppraisalBy';
-import type {ICasInfo} from './Interface/ICasInfo'
+import type { ICasInfo } from './Interface/ICasInfo'
 import type { IChecking } from './Interface/IChecking';
 import type { IProperty } from './Interface/IProperty';
-import { Guid } from 'guid-ts';
-
-export class CasInfo implements ICasInfo{
+export class CasInfo extends Base implements ICasInfo {
     constructor() {
-        this.sid = 0;
-        this.fkCaseNo = Guid.newGuid().toString();
-        this.createDate = new Date();
-        this.updateDate = new Date();
-        
+        super();
     }
-    PurchasedPropertyStstus?: string | undefined;
-    MainBorrowerStatus?: string | undefined;
-    FirstBuyer?: string | undefined;
-    FloorNumber?: string | undefined;
-    RoomNumber?: string | undefined;
-    WidthOfLand?: string | undefined;
-    DateOfConstruction?: string | undefined;
-    AppraisalByList?: IAppraisalBy[] | undefined;
-    AppraisalFee?: string | undefined;
-    PropertyList?: IProperty[] | undefined;
-    CheckingList?: IChecking[] | undefined;
+    PurchasedPropertyStstus?: string;
+    MainBorrowerStatus?: string;
+    FirstBuyer?: string;
+    FloorNumber?: string;
+    RoomNumber?: string;
+    WidthOfLand?: string;
+    DateOfConstruction?: string;
+    AppraisalByList?: IAppraisalBy[];
+    AppraisalFee?: string;
+    PropertyList?: IProperty[];
+    CheckingList?: IChecking[];
     Remark?: string;
     AppraisalValue?: number;
-    sid: number;
-    fkCaseNo: string;
-    createDate: Date;
-    updateDate: Date;
-
     ApprisaledBy?: string;
     TotalPrice?: number;
-
     type?: string;
     area?: number;
     price?: number;
     envalue?: number;
-
     PropertyType?: string;
     SizeSqm?: number;
     PriceSqm?: number;

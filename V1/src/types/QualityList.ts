@@ -1,5 +1,5 @@
 import { QualityItem } from './QualityItem'
-import { OccupancyStateEnum, MortgageTypeEnum, QualityEnum } from './Constant';
+import { QualityEnum } from './Constant';
 export class QualityList {
     constructor() {
         this.QualityItems = new Array<QualityItem>(

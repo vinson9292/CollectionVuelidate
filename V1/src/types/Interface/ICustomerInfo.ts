@@ -1,16 +1,15 @@
-import type { IBase } from "./IBase";
 import type { Address } from "../Address";
 import type { DeedTypeEnum } from "../Constant";
-export interface ICustomerInfo extends IBase {
-    ReportNo: string;
-    Brach: string;
-    FullNameOfOwnship: string;
-    BorrowerName: string;
-    DeedType: DeedType;
-    DeedNo: string;
-    Propertype: string;
-    JointBowwer: string;
-    Location: Address;
-    BoreyWholeName: string;
-    WholeProjectName: string;
+export interface ICustomerInfo {
+    ReportNo?: string;
+    Brach?: string;
+    FullNameOfOwnship?: string;
+    BorrowerName?: string;
+    DeedType?: DeedTypeEnum;
+    DeedNo?: string;
+    Propertype?: string;
+    JointBowwer?: string;
+    Location?: Address;
+    BoreyWholeName?: string;
+    WholeProjectName?: string;
 }
