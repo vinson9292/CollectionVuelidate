@@ -30,5 +30,4 @@ export class CasInfo extends Base implements ICasInfo {
     SizeSqm?: number;
     PriceSqm?: number;
     PropertyValue?: number;
-
 }

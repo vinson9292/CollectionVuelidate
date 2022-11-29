@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <AppraisalInfo :case-no="caseNo" />
     <PropertyInfo :case-no="caseNo" />
     <!-- <PropertyInfo :case-no="caseNo" /> -->
     <!-- <CssGrid/> -->
@@ -8,12 +9,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import AppraisalInfo from './components/AppraisalInfo.vue'
+import AppraisalList from './components/AppraisalList.vue'
 import PropertyInfo from './components/PropertyInfo.vue'
 import PropertyList from './components/PropertyList.vue'
 import CssGrid from './components/CssGrid.vue'
 export default defineComponent({
   name: 'App',
   components: {
+    AppraisalInfo,
+    AppraisalList,
     PropertyInfo,
     PropertyList,
     CssGrid
