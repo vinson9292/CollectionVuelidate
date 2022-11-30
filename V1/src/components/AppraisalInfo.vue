@@ -1,6 +1,6 @@
 <template>
     <div class="listBorder">
-        <h4>案號 : {{ caseNo }}</h4>
+        <h4>外部評估清單</h4>
         <AppraisalList :appraisalBys="vm.appraisalBys" :deleteAppraisal="deleteAppraisal" />
         <button v-on:click="addAppraisal">add</button>
         <button v-on:click="saveAppraisal">save</button>
@@ -8,7 +8,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import AppraisalList from './AppraisalList.vue'
 import { AppraisalBy } from '../types/AppraisalBy'
 import { useVuelidate } from '@vuelidate/core'
@@ -50,17 +50,17 @@ export default defineComponent({
             console.log('v$.value.$errors', v$.value.$errors)
             if (response) {
                 console.log(vm);
-                saveItems('AppraisalList', vm.appraisalBys);
+                saveItems('appraisalList', vm.appraisalBys);
                 vm.appraisalBys.push(new AppraisalBy())
             }
         }
 
-        const v$ = useVuelidate()
+        const v$ = useVuelidate();
         onMounted(() => {
             setTimeout(() => {
-                vm.appraisalBys = readItems('AppraisalList');
+                vm.appraisalBys = readItems('appraisalList');
             }, 500)
-        })
+        });
 
         // watch(() => vm.properts, saveAppraisals, { deep: true })
         return {

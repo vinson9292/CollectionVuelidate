@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h4>案號 : {{ caseNo }}</h4>
     <AppraisalInfo :case-no="caseNo" />
     <PropertyInfo :case-no="caseNo" />
     <!-- <PropertyInfo :case-no="caseNo" /> -->

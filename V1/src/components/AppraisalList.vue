@@ -2,7 +2,7 @@
     <table>
         <AppraisalItem 
         v-for="(appraisalBy,index) in appraisalBys" 
-        :Appraisal="appraisalBys"
+        :Appraisal="appraisalBy"
         :addAppraisal="addAppraisal"
         :deleteAppraisal="deleteAppraisal"
         :saveAppraisal="saveAppraisal"

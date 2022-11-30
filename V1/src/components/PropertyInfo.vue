@@ -1,6 +1,6 @@
 <template>
     <div class="listBorder">
-        <h4>案號 : {{ caseNo }}</h4>
+        <h4>不動產清單</h4>
         <PropertyList :properts="vm.properts" :deleteProperty="deleteProperty" />
         <button v-on:click="addProperty">add</button>
         <button v-on:click="saveProperty">save</button>
@@ -8,7 +8,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import PropertyList from './PropertyList.vue'
 import { Property } from '../types/Property'
 import { useVuelidate } from '@vuelidate/core'
