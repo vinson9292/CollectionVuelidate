@@ -12,21 +12,15 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import AppraisalInfo from './components/Appraisal/Info.vue'
-import AppraisalList from './components/Appraisal/List.vue'
-import PropertyInfo from './components/PropertyInfo.vue'
-import PropertyList from './components/PropertyList.vue'
+import PropertyInfo from './components/Property/Info.vue'
 import CheckingInfo from './components/Checking/Info.vue'
-import CheckingList from './components/Checking/List.vue'
 import CssGrid from './components/CssGrid.vue'
 export default defineComponent({
   name: 'App',
   components: {
     AppraisalInfo,
-    AppraisalList,
     PropertyInfo,
-    PropertyList,
     CheckingInfo,
-    CheckingList,
     CssGrid
   },
   setup() {

@@ -9,10 +9,10 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
-import PropertyList from './PropertyList.vue'
-import { Property } from '../types/Property'
+import PropertyList from './List.vue'
+import { Property } from '../../types/Property'
 import { useVuelidate } from '@vuelidate/core'
-import { saveItems, readItems } from '../utils/RecommentdationStore'
+import { saveItems, readItems } from '../../utils/RecommentdationStore'
 
 export default defineComponent({
     name: 'PropertyInfo',

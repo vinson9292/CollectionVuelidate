@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import PropertyItem from './PropertyItem.vue'
+import PropertyItem from './Item.vue'
 export default defineComponent({
     name: 'PropertyList',
     components: {

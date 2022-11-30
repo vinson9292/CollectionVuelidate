@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import type { IProperty } from '../types/Interface/IProperty'
+import type { IProperty } from '../../types/Interface/IProperty'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
