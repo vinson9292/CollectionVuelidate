@@ -1,11 +1,11 @@
 <template>
     <table>
         <AppraisalItem 
-        v-for="(appraisalBy,index) in appraisalBys" 
-        :Appraisal="appraisalBy"
-        :addAppraisal="addAppraisal"
-        :deleteAppraisal="deleteAppraisal"
-        :saveAppraisal="saveAppraisal"
+        v-for="(item,index) in items" 
+        :Appraisal="item"
+        :add="add"
+        :deleteItem="deleteItem"
+        :savel="save"
         :index="index"
         />
     </table>
@@ -18,6 +18,6 @@ export default defineComponent({
     components: {
         AppraisalItem
     },
-    props: ['appraisalBys','addAppraisal','deleteAppraisal','saveAppraisal']
+    props: ['items','add','deleteItem','save']
 })
 </script>

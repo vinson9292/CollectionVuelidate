@@ -1,10 +1,10 @@
 <template>
     <div class="listBorder">
         <h4>外部評估清單</h4>
-        <AppraisalList :appraisalBys="vm.appraisalBys" :deleteAppraisal="delete" />
-        <button v-on:click="addAppraisal">add</button>
-        <button v-on:click="saveAppraisal">save</button>
-        <button v-on:click="deleteAllAppraisal">cleraAll</button>
+        <AppraisalList :items="vm.items" :deleteItem="deleteItem" />
+        <button v-on:click="add">add</button>
+        <button v-on:click="save">save</button>
+        <button v-on:click="deleteAll">cleraAll</button>
     </div>
 </template>
 <script lang="ts">
@@ -26,51 +26,45 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const caseNo = props.caseNo;
-        const vm = reactive<{ appraisalBys: Array<AppraisalBy> }>({
-            appraisalBys: []
+        const vm = reactive<{ items: Array<AppraisalBy> }>({
+            items: []
         });
 
-        const addAppraisal = async () => {
+        const add = async () => {
             let response = await v$.value.$validate();
             if (response) {
-                vm.appraisalBys.push(new AppraisalBy())
+                vm.items.push(new AppraisalBy())
             }
         }
-        const deleteAllAppraisal = () => {
-            vm.appraisalBys = new Array<AppraisalBy>;
-            vm.appraisalBys.push(new AppraisalBy());
+        const deleteAll = () => {
+            vm.items = new Array<AppraisalBy>;
+            vm.items.push(new AppraisalBy());
         }
-        const deleteAppraisal = (index: number) => {
-            vm.appraisalBys.splice(index, 1);
+        const deleteItem = (index: number) => {
+            vm.items.splice(index, 1);
         }
-        const saveAppraisal = async () => {
+        const save = async () => {
             let response = await v$.value.$validate();
-            console.log('response', response);
-            console.log('v$.value.$errors', v$.value.$errors)
             if (response) {
-                console.log(vm);
-                saveItems('appraisalList', vm.appraisalBys);
-                vm.appraisalBys.push(new AppraisalBy())
+                saveItems('AppraisalInfo', vm.items);
+                vm.items.push(new AppraisalBy())
             }
         }
 
         const v$ = useVuelidate();
         onMounted(() => {
             setTimeout(() => {
-                vm.appraisalBys = readItems('appraisalList');
+                vm.items = readItems('AppraisalInfo');
             }, 500)
         });
 
-        // watch(() => vm.properts, saveAppraisals, { deep: true })
         return {
             vm,
-            caseNo,
-            ...toRefs(vm.appraisalBys),
-            addAppraisal,
-            deleteAllAppraisal,
-            deleteAppraisal,
-            saveAppraisal,
+            ...toRefs(vm.items),
+            add,
+            deleteAll,
+            deleteItem,
+            save,
             v$
         }
     }

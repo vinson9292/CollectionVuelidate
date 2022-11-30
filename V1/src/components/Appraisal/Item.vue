@@ -13,7 +13,7 @@
             </div>
         </td>
         <td>
-            <button @click="delAppraisal">Del</button>
+            <button @click="delItem">Del</button>
         </td>
     </tr>
 </template>
@@ -30,7 +30,7 @@ export default defineComponent({
             type: Object as () => IAppraisalBy,
             required: true,
         },
-        deleteAppraisal: {
+        deleteItem: {
             type: Function,
             required: true
         },
@@ -52,14 +52,14 @@ export default defineComponent({
         }
 
         const v$ = useVuelidate(rules, state)
-        const delAppraisal = () => {
+        const delItem = () => {
             if (window.confirm('確認要刪除?')) {
-                props.deleteAppraisal(props.index);
+                props.deleteItem(props.index);
             }
         }
         return {
             state,
-            delAppraisal,
+            delItem,
             v$
         }
     }
