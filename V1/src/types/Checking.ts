@@ -6,5 +6,5 @@ export class Checking extends Base implements IChecking {
     }
     CheckingWith?: string;
     Price?: number;
-    Date?: string;
+    Date?: Date;
 }

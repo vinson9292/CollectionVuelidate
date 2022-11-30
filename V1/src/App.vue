@@ -3,6 +3,7 @@
     <h4>案號 : {{ caseNo }}</h4>
     <AppraisalInfo :case-no="caseNo" />
     <PropertyInfo :case-no="caseNo" />
+    <CheckingInfo :case-no="caseNo" />
     <!-- <PropertyInfo :case-no="caseNo" /> -->
     <!-- <CssGrid/> -->
   </div>
@@ -14,6 +15,8 @@ import AppraisalInfo from './components/Appraisal/Info.vue'
 import AppraisalList from './components/Appraisal/List.vue'
 import PropertyInfo from './components/PropertyInfo.vue'
 import PropertyList from './components/PropertyList.vue'
+import CheckingInfo from './components/Checking/Info.vue'
+import CheckingList from './components/Checking/List.vue'
 import CssGrid from './components/CssGrid.vue'
 export default defineComponent({
   name: 'App',
@@ -22,6 +25,8 @@ export default defineComponent({
     AppraisalList,
     PropertyInfo,
     PropertyList,
+    CheckingInfo,
+    CheckingList,
     CssGrid
   },
   setup() {
