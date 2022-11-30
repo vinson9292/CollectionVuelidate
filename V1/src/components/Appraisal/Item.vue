@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import type {IAppraisalBy} from '../types/Interface/IAppraisalBy'
+import type {IAppraisalBy} from '../../types/Interface/IAppraisalBy'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 

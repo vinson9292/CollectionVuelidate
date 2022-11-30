@@ -10,8 +10,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import AppraisalInfo from './components/AppraisalInfo.vue'
-import AppraisalList from './components/AppraisalList.vue'
+import AppraisalInfo from './components/Appraisal/Info.vue'
+import AppraisalList from './components/Appraisal/List.vue'
 import PropertyInfo from './components/PropertyInfo.vue'
 import PropertyList from './components/PropertyList.vue'
 import CssGrid from './components/CssGrid.vue'

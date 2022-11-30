@@ -1,7 +1,7 @@
 <template>
     <div class="listBorder">
         <h4>外部評估清單</h4>
-        <AppraisalList :appraisalBys="vm.appraisalBys" :deleteAppraisal="deleteAppraisal" />
+        <AppraisalList :appraisalBys="vm.appraisalBys" :deleteAppraisal="delete" />
         <button v-on:click="addAppraisal">add</button>
         <button v-on:click="saveAppraisal">save</button>
         <button v-on:click="deleteAllAppraisal">cleraAll</button>
@@ -9,10 +9,10 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
-import AppraisalList from './AppraisalList.vue'
-import { AppraisalBy } from '../types/AppraisalBy'
+import AppraisalList from './List.vue'
+import { AppraisalBy } from '../../types/AppraisalBy'
 import { useVuelidate } from '@vuelidate/core'
-import { saveItems, readItems } from '../utils/RecommentdationStore'
+import { saveItems, readItems } from '../../utils/RecommentdationStore'
 
 export default defineComponent({
     name: 'AppraisalInfo',

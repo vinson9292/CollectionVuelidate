@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AppraisalItem from './AppraisalItem.vue'
+import AppraisalItem from './Item.vue'
 export default defineComponent({
     name: 'AppraisalList',
     components: {
