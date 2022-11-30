@@ -1,7 +1,7 @@
 <template>
     <div class="listBorder">
-        <h4>檢核清單</h4>
-        <CheckingList :items="vm.items" :deleteItem="deleteItem" />
+        <h4>待辦清單清單</h4>
+        <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <button v-on:click="add">add</button>
         <button v-on:click="save">save</button>
         <button v-on:click="deleteAll">cleraAll</button>
@@ -9,15 +9,15 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
-import CheckingList from './List.vue'
-import { Checking } from '../../types/Checking'
+import TodoList from './List.vue'
+import { Todo } from '../../types/Todo'
 import { useVuelidate } from '@vuelidate/core'
 import { saveItems, readItems } from '../../utils/RecommentdationStore'
 
 export default defineComponent({
-    name: 'CheckingInfo',
+    name: 'TodoInfo',
     components: {
-        CheckingList
+        TodoList
     },
     props: {
         caseNo: {
@@ -26,19 +26,19 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const vm = reactive<{ items: Array<Checking> }>({
+        const vm = reactive<{ items: Array<Todo> }>({
             items: []
         });
 
         const add = async () => {
             let response = await v$.value.$validate();
             if (response) {
-                vm.items.push(new Checking())
+                vm.items.push(new Todo())
             }
         }
         const deleteAll = () => {
-            vm.items = new Array<Checking>;
-            vm.items.push(new Checking());
+            vm.items = new Array<Todo>;
+            vm.items.push(new Todo());
         }
         const deleteItem = (index: number) => {
             vm.items.splice(index, 1);
@@ -46,15 +46,15 @@ export default defineComponent({
         const save = async () => {
             let response = await v$.value.$validate();
             if (response) {
-                saveItems('CheckingInfo', vm.items);
-                vm.items.push(new Checking())
+                saveItems('AppraisalInfo', vm.items);
+                vm.items.push(new Todo())
             }
         }
 
         const v$ = useVuelidate();
         onMounted(() => {
             setTimeout(() => {
-                vm.items = readItems('CheckingInfo');
+                vm.items = readItems('AppraisalInfo');
             }, 500)
         });
 
