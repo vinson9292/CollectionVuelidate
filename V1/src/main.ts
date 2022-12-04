@@ -1,11 +1,8 @@
 import { createApp } from 'vue'
-// import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
 
 import './assets/main.css'
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap-vue/dist/bootstrap-vue.css";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'

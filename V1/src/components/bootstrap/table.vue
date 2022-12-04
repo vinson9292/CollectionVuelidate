@@ -11,7 +11,9 @@
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
+      <td>
+        1234567只能呈現,不可編輯
+      </td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>

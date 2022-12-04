@@ -1,6 +1,6 @@
 <template>
-    <tr>
-        <td>
+    <tr class="table-primary">
+        <td class="table-secondary">
             <input v-model="Todo.Title" @blur="v$.Title.$touch">
             <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
@@ -25,7 +25,7 @@
             </div>
         </td>
         <td>
-            <button @click="delItem">Del</button>
+            <button type="button" class="btn btn-primary" @click="delItem">Del</button>
         </td>
     </tr>
 </template>

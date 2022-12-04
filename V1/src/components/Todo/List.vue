@@ -1,5 +1,5 @@
 <template>
-    <table>
+    <table class="table-success">
         <TodoItem 
         v-for="(item,index) in items" 
         :Todo="item"
