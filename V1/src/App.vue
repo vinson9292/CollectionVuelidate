@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <Table></Table>
+        <HelloWorld></HelloWorld>
       </div>
     </div>
     <div class="row">
@@ -41,7 +41,7 @@ import TodoInfo from './components/Todo/Info.vue'
 import AppraisalInfo from './components/Appraisal/Info.vue'
 import PropertyInfo from './components/Property/Info.vue'
 import CheckingInfo from './components/Checking/Info.vue'
-import Table from './components/bootstrap/table.vue'
+import HelloWorld from './components/Experimental/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
@@ -50,19 +50,22 @@ export default defineComponent({
     AppraisalInfo,
     PropertyInfo,
     CheckingInfo,
-    Table
+    HelloWorld
   },
   compatConfig: { MODE: 3 },
   setup() {
     const caseNo = ref('A1234567890')
     return {
       caseNo,
-      Table
+      HelloWorld
     }
   }
 })
 </script>
 <style>
+#app {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 </style>
 
 

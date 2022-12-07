@@ -1,0 +1,22 @@
+{
+    "language": "Polski",
+    "date": "Data",
+    "question": "Prosze wybrać język",
+    "search": "Wyszukaj",
+    "news1": "Wiadomości",
+    "news2": "Inne wiadomości",
+    "profile": "Mój profil",
+    "profileSettings": "Ustawienia",
+    "profileLogout": "Wyloguj",
+    "accordion1": "Przedmiot - Jeden",
+    "accordion2": "Przedmiot - Dwa",
+    "accordion3": "Przedmiot - Trzy",
+    "accordionTxt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae magna lacus. Fusce pretium urna id tellus ornare sagittis. Sed ac sagittis nibh, nec vehicula dolor. Cras et posuere mi",
+    "maskText": "Czy mnie widzisz?",
+    "slide1Label": "Etykieta pierwszego slajdu",
+    "slide2Label": "Etykieta drugiego slajdu",
+    "slide3Label": "Etykieta trzeciego slajdu",
+    "slide1Description": "Polski - Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "slide2Description": "Polski - Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "slide3Description": "Polski - Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+  }

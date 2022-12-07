@@ -1,0 +1,22 @@
+{
+    "language": "Deutsch",
+    "date": "Datum",
+    "question": "Bitte wähle eine Sprache",
+    "search": "Suchen",
+    "news1": "Nachrichten",
+    "news2": "Andere Nachrichten",
+    "profile": "Mein Profil",
+    "profileSettings": "Einstellungen",
+    "profileLogout": "Ausloggen",
+    "accordion1": "Post - Ein",
+    "accordion2": "Post - Zwei",
+    "accordion3": "Post - Drei",
+    "accordionTxt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae magna lacus. Fusce pretium urna id tellus ornare sagittis. Sed ac sagittis nibh, nec vehicula dolor. Cras et posuere mi",
+    "maskText": "Können Sie mich sehen?",
+    "slide1Label": "Etikett des ersten Objektträgers",
+    "slide2Label": "Etikett des zweiten Objektträgers",
+    "slide3Label": "Etikett des dritten Objektträgers",
+    "slide1Description": "Deutsch - Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "slide2Description": "Deutsch - Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "slide3Description": "Deutsch - Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+  }
