@@ -70,29 +70,14 @@ export default defineComponent({
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
-.header,
-.header-space,
-.footer,
-.footer-space {
-  height: 100px;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-}
-
 /* @page {
   margin: 2mm
 } */
 
 @media screen {
-  div#footer_wrapper {
+
+  .header,
+  .footer {
     display: none;
   }
 }
@@ -110,6 +95,26 @@ export default defineComponent({
 
   div#footer_content {
     font-weight: bold;
+  }
+
+  .header,
+  .header-space,
+  .footer,
+  .footer-space {
+    height: 100px;
+  }
+
+  .header {
+    display: block;
+    position: fixed;
+    top: 0;
+  }
+
+  .footer {
+    margin: 0px 2px 0px 7px;
+    display: block;
+    position: fixed;
+    bottom: 0;
   }
 }
 </style>
