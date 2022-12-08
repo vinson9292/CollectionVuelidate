@@ -1,10 +1,10 @@
 <template>
-    <div class="listBorder">
+    <div class="bd-example">
         <h4>不動產清單</h4>
         <PropertyList :properts="vm.properts" :deleteProperty="deleteProperty" />
-        <button v-on:click="addProperty">add</button>
-        <button v-on:click="saveProperty">save</button>
-        <button v-on:click="deleteAllProperty">cleraAll</button>
+        <button class="btn btn-primary btn-group" v-on:click="addProperty">add</button>
+        <button class="btn btn-primary btn-group" v-on:click="saveProperty">save</button>
+        <button class="btn btn-primary btn-group" v-on:click="deleteAllProperty">cleraAll</button>
     </div>
 </template>
 <script lang="ts">
@@ -80,5 +80,18 @@ export default defineComponent({
 .listBorder {
     margin-top: 10px;
     border: 15px;
+}
+
+.bd-example {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.btn-group {
+    margin: 0.25rem 0.125rem
 }
 </style>

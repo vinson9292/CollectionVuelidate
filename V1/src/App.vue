@@ -1,4 +1,7 @@
 <template>
+  <!-- <div class="thead">
+    <div class="header-space">&nbsp;</div>
+  </div> -->
   <div class="container">
     <div class="row">
       <div class="col">
@@ -7,31 +10,31 @@
     </div>
     <div class="row">
       <div class="col">
-        <HelloWorld></HelloWorld>
+        <!-- <HelloWorld></HelloWorld> -->
+        <AppraisalInfo :case-no="caseNo" />
       </div>
     </div>
     <div class="row">
       <div class="col">
-
+        <PropertyInfo :case-no="caseNo" />
       </div>
     </div>
     <div class="row">
       <div class="col">
-
+        <CheckingInfo :case-no="caseNo" />
       </div>
     </div>
     <div class="row">
       <div class="col">
-
+        <AppraisalInfo :case-no="caseNo" />
       </div>
-
     </div>
+    <!-- <div class="thead">
+      <div class="footer-space">&nbsp;</div>
+    </div> -->
 
-    <!--<h4>案號 : {{ caseNo }}</h4>
-    <AppraisalInfo :case-no="caseNo" />
-    <PropertyInfo :case-no="caseNo" />
-    <CheckingInfo :case-no="caseNo" /> -->
-
+    <div class="header">案號 : {{ caseNo }}</div>
+    <div class="footer">案號 : {{ caseNo }}</div>
   </div>
 </template>
 
@@ -65,6 +68,49 @@ export default defineComponent({
 <style>
 #app {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.header,
+.header-space,
+.footer,
+.footer-space {
+  height: 100px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+
+/* @page {
+  margin: 2mm
+} */
+
+@media screen {
+  div#footer_wrapper {
+    display: none;
+  }
+}
+
+@media print {
+  tfoot {
+    visibility: hidden;
+  }
+
+  div#footer_wrapper {
+    margin: 0px 2px 0px 7px;
+    position: fixed;
+    bottom: 0;
+  }
+
+  div#footer_content {
+    font-weight: bold;
+  }
 }
 </style>
 

@@ -25,7 +25,7 @@
             </div>
         </td>
         <td>
-            <button @click="delProperty">Del</button>
+            <button class="btn btn-primary btn-group" @click="delProperty">Del</button>
         </td>
     </tr>
 </template>

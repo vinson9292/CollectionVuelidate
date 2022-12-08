@@ -1,10 +1,10 @@
 <template>
-    <div class="listBorder">
+    <div class="bd-example">
         <h4>檢核清單</h4>
         <CheckingList :items="vm.items" :deleteItem="deleteItem" />
-        <button v-on:click="add">add</button>
-        <button v-on:click="save">save</button>
-        <button v-on:click="deleteAll">cleraAll</button>
+        <button class="btn btn-primary btn-group" v-on:click="add">add</button>
+        <button class="btn btn-primary btn-group" v-on:click="save">save</button>
+        <button class="btn btn-primary btn-group" v-on:click="deleteAll">cleraAll</button>
     </div>
 </template>
 <script lang="ts">
@@ -74,5 +74,18 @@ export default defineComponent({
 .listBorder {
     margin-top: 10px;
     border: 15px;
+}
+
+.bd-example {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.btn-group {
+    margin: 0.25rem 0.125rem
 }
 </style>

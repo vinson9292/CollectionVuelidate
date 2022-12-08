@@ -13,7 +13,7 @@
             </div>
         </td>
         <td>
-            <button @click="delItem">Del</button>
+            <button class="btn btn-primary btn-group" @click="delItem">Del</button>
         </td>
     </tr>
 </template>
