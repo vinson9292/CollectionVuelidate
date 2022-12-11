@@ -7,7 +7,7 @@
             </div>
         </td>
         <td>
-            <input v-model="Todo.Decsription" @blur="v$.Decsription.$touch">
+            <textarea class="form-control" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"></textarea>
             <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
@@ -79,3 +79,6 @@ export default defineComponent({
     }
 })
 </script>
+<style>
+
+</style>
