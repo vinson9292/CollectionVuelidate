@@ -1,42 +1,50 @@
 <template>
-    <tr class="table-primary">
-        <td class="table-secondary">
-            <input v-model="Todo.Title" @blur="v$.Title.$touch">
-            <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </td>
-        <td>
-            <textarea class="form-control" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"></textarea>
-            <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </td>
-        <td>
-            <input v-model="Todo.StartTime" @blur="v$.StartTime.$touch">
-            <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </td>
-        <td>
-            <input v-model="Todo.EndTime" @blur="v$.EndTime.$touch">
-            <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </td>
-        <td>
-            <button type="button" class="btn btn-primary" @click="delItem">Del</button>
-        </td>
-    </tr>
+    <n-space vertical>
+        <tr class="table-primary">
+            <td class="table-secondary">
+                <n-input type="text" v-model="Todo.Title" @blur="v$.Title.$touch"/>
+                <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </td>
+            <td>
+                <n-input type="textarea" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"></n-input>
+                <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </td>
+            <td>
+                <!-- <input v-model="Todo.StartTime" @blur="v$.StartTime.$touch"> -->
+                <n-date-picker type="date" v-model:value="timestamp" @blur="v$.StartTime.$touch"/>
+                <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </td>
+            <td>
+                <n-input v-model="Todo.EndTime" @blur="v$.EndTime.$touch"/>
+                <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </td>
+            <td>
+                <n-button type="error" class="btn btn-primary" @click="delItem">Del</n-button>
+            </td>
+        </tr>
+    </n-space>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import type {ITodo} from '../../types/Interface/ITodo'
+import { defineComponent, reactive ,ref} from 'vue'
+import { useMessage } from 'naive-ui'
+import { NButton } from 'naive-ui'
+import type { ITodo } from '../../types/Interface/ITodo'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
 export default defineComponent({
     name: 'TodoItem',
+    components: {
+        NButton
+    },
     props: {
         Todo: {
             type: Object as () => ITodo,
@@ -53,6 +61,7 @@ export default defineComponent({
     },
     setup(props) {
         const state = reactive(props.Todo)
+        // const message = useMessage()
         const min = (param: number) =>
             helpers.withParams(
                 { type: 'min', value: param },
@@ -74,7 +83,11 @@ export default defineComponent({
         return {
             state,
             delItem,
-            v$
+            v$,
+            // handleConfirm(value: number | null) {
+            //     message.success('确认' + value)
+            // },
+            timestamp: ref(1183135260000)
         }
     }
 })

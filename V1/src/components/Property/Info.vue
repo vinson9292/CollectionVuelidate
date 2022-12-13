@@ -2,9 +2,9 @@
     <div class="bd-example">
         <h4>不動產清單</h4>
         <PropertyList :properts="vm.properts" :deleteProperty="deleteProperty" />
-        <button class="btn btn-primary btn-group" v-on:click="addProperty">add</button>
-        <button class="btn btn-primary btn-group" v-on:click="saveProperty">save</button>
-        <button class="btn btn-primary btn-group" v-on:click="deleteAllProperty">cleraAll</button>
+        <n-button class="btn btn-primary btn-group" v-on:click="addProperty">add</n-button>
+        <n-button class="btn btn-primary btn-group" v-on:click="saveProperty">save</n-button>
+        <n-button class="btn btn-primary btn-group" v-on:click="deleteAllProperty">cleraAll</n-button>
     </div>
 </template>
 <script lang="ts">

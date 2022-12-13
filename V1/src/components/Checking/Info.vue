@@ -2,9 +2,9 @@
     <div class="bd-example">
         <h4>檢核清單</h4>
         <CheckingList :items="vm.items" :deleteItem="deleteItem" />
-        <button class="btn btn-primary btn-group" v-on:click="add">add</button>
-        <button class="btn btn-primary btn-group" v-on:click="save">save</button>
-        <button class="btn btn-primary btn-group" v-on:click="deleteAll">cleraAll</button>
+        <n-button class="btn btn-primary btn-group" v-on:click="add">add</n-button>
+        <n-button class="btn btn-primary btn-group" v-on:click="save">save</n-button>
+        <n-button class="btn btn-primary btn-group" v-on:click="deleteAll">cleraAll</n-button>
     </div>
 </template>
 <script lang="ts">

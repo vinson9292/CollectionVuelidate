@@ -2,16 +2,14 @@
     <div class="bd-example">
         <h4>待辦清單清單</h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
-        <!-- <button v-on:click="add">add</button>
-        <button v-on:click="save">save</button>
-        <button v-on:click="deleteAll">cleraAll</button> -->
-        <button type="button" class="btn btn-primary btn-group" v-on:click="add">add</button>
-        <button type="button" class="btn btn-primary btn-group" v-on:click="save">save</button>
-        <button type="button" class="btn btn-primary btn-group" v-on:click="deleteAll">deleteAll</button>
-    </div>
+        <n-button type="primary" v-on:click="add">add</n-button>
+        <n-button type="primary" v-on:click="save">save</n-button>
+        <n-button type="primary" v-on:click="deleteAll">cleraAll</n-button>
+        </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { NButton } from 'naive-ui'
 import TodoList from './List.vue'
 import { Todo } from '../../types/Todo'
 import { useVuelidate } from '@vuelidate/core'
@@ -20,7 +18,8 @@ import { saveItems, readItems } from '../../utils/RecommentdationStore'
 export default defineComponent({
     name: 'TodoInfo',
     components: {
-        TodoList
+        TodoList,
+        NButton
     },
     props: {
         caseNo: {
