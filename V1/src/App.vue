@@ -7,22 +7,22 @@
     </div>
     <div class="row">
       <div class="col">
-        <AppraisalInfo :case-no="caseNo" />
+        <!-- <AppraisalInfo :case-no="caseNo" /> -->
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <PropertyInfo :case-no="caseNo" />
+        <!-- <PropertyInfo :case-no="caseNo" /> -->
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <CheckingInfo :case-no="caseNo" />
+        <!-- <CheckingInfo :case-no="caseNo" /> -->
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <AppraisalInfo :case-no="caseNo" />
+        <!-- <AppraisalInfo :case-no="caseNo" /> -->
       </div>
     </div>
     <!-- <div class="thead">

@@ -1,5 +1,5 @@
 <template>
-    <div class="bd-example">
+    <div class="">
         <h4>待辦清單清單</h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <n-button type="primary" v-on:click="add">add</n-button>
@@ -47,8 +47,10 @@ export default defineComponent({
         }
         const save = async () => {
             let response = await v$.value.$validate();
+            console.log('response',response);
+            console.log('vm.items',vm.items);
             if (response) {
-                saveItems('AppraisalInfo', vm.items);
+                saveItems('TodoInfo', vm.items);
                 vm.items.push(new Todo())
             }
         }
@@ -56,7 +58,7 @@ export default defineComponent({
         const v$ = useVuelidate();
         onMounted(() => {
             setTimeout(() => {
-                vm.items = readItems('AppraisalInfo');
+                vm.items = readItems('TodoInfo');
             }, 500)
         });
 

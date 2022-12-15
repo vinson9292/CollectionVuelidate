@@ -2,6 +2,6 @@ import type { IBase } from "./IBase";
 export interface ITodo extends IBase {
     Title: string;
     Decsription: string;
-    StartTime: Date;
-    EndTime: Date;
+    StartTime: number;
+    EndTime: number;
 }

@@ -1,27 +1,33 @@
 <template>
-    <n-space vertical>
+    <n-space>
         <tr class="table-primary">
             <td class="table-secondary">
-                <n-input type="text" v-model="Todo.Title" @blur="v$.Title.$touch"/>
+                <input type="text" v-model="Todo.Title" @blur="v$.Title.$touch"/>
                 <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <n-input type="textarea" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"></n-input>
+                <input type="text" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"/>
                 <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
                 <!-- <input v-model="Todo.StartTime" @blur="v$.StartTime.$touch"> -->
-                <n-date-picker type="date" v-model:value="timestamp" @blur="v$.StartTime.$touch"/>
+                <n-date-picker  
+                v-model:value="Todo.StartTime"
+                type="date"
+                 @blur="v$.StartTime.$touch"/>
                 <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <n-input v-model="Todo.EndTime" @blur="v$.EndTime.$touch"/>
+                <n-date-picker  
+                v-model:value="Todo.EndTime"
+                type="datetime"
+                 @blur="v$.EndTime.$touch"/>
                 <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
@@ -70,8 +76,8 @@ export default defineComponent({
         const rules = {
             Title: { required }, // Matches props.Todo.Title
             Decsription: { required }, // Matches props.Todo.Decsription
-            StartTime: { required, min: helpers.withMessage('必須大於11', min(11)) }, // Matches props.Todo.StartTime
-            EndTime: { required, min: helpers.withMessage('必須大於11', min(11)) }, // Matches props.Todo.EndTime
+            StartTime: { required }, // Matches props.Todo.StartTime
+            EndTime: { required }, // Matches props.Todo.EndTime
         }
 
         const v$ = useVuelidate(rules, state)
@@ -84,10 +90,7 @@ export default defineComponent({
             state,
             delItem,
             v$,
-            // handleConfirm(value: number | null) {
-            //     message.success('确认' + value)
-            // },
-            timestamp: ref(1183135260000)
+            range: ref<[number, number]>([props.Todo.StartTime, Date.now()])
         }
     }
 })

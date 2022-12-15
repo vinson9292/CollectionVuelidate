@@ -5,11 +5,11 @@ export class Todo extends Base implements ITodo {
         super();
         this.Title = '';
         this.Decsription = '';
-        this.StartTime = new Date();
-        this.EndTime = new Date();
+        this.StartTime = Date.now();
+        this.EndTime = Date.now();
     }
     Title: string
     Decsription: string
-    StartTime: Date
-    EndTime: Date
+    StartTime: number
+    EndTime: number
 }
