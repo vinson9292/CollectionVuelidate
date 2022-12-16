@@ -1,7 +1,7 @@
 <template>
     <n-space>
-        <tr class="table-primary">
-            <td class="table-secondary">
+        <tr>
+            <td >
                 <input type="text" v-model="Todo.Title" @blur="v$.Title.$touch"/>
                 <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
@@ -14,7 +14,6 @@
                 </div>
             </td>
             <td>
-                <!-- <input v-model="Todo.StartTime" @blur="v$.StartTime.$touch"> -->
                 <n-date-picker  
                 v-model:value="Todo.StartTime"
                 type="date"
