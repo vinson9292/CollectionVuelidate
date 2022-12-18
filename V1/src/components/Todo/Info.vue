@@ -1,14 +1,19 @@
 <template>
     <div class="">
-        <h4>待辦清單清單</h4>
+        <h2>願望清單</h2>
+        <h4>
+            上主，求祢恩賜我們在平安中，在快樂中度過這一天；不要讓我們遭受創傷；不要讓我們沾染罪污。<br/>
+            讓我們克服一切煩惱的困擾，並遠離罪惡的誘惑，能使我們今天歡欣的向祢謳歌讚頌。<br/>
+            上主，我們的天主，祢是照顧萬物的慈父，願祢永遠受讚美。阿們。<br/>
+        </h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <n-button type="primary" v-on:click="add">add</n-button>
         <n-button type="primary" v-on:click="save">save</n-button>
         <n-button type="primary" v-on:click="deleteAll">cleraAll</n-button>
-        </div>
+    </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import { NButton } from 'naive-ui'
 import TodoList from './List.vue'
 import { Todo } from '../../types/Todo'
@@ -47,13 +52,18 @@ export default defineComponent({
         }
         const save = async () => {
             let response = await v$.value.$validate();
-            console.log('response',response);
-            console.log('vm.items',vm.items);
+            console.log('response', response);
+            console.log('vm.items', vm.items);
             if (response) {
                 saveItems('TodoInfo', vm.items);
             }
         }
-
+        watch(vm, async () => {
+            let response = await v$.value.$validate();
+            if (response) {
+                saveItems('TodoInfo', vm.items);
+            }
+        })
         const v$ = useVuelidate();
         onMounted(() => {
             setTimeout(() => {
