@@ -14,6 +14,8 @@ declare module '@vue/runtime-core' {
     NButton: typeof import('naive-ui')['NButton']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NInput: typeof import('naive-ui')['NInput']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NPopconfirm: typeof import('naive-ui')['NPopconfirm']
     NSpace: typeof import('naive-ui')['NSpace']
     NTimePicker: typeof import('naive-ui')['NTimePicker']
   }

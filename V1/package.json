@@ -17,7 +17,6 @@
     "@vuelidate/validators": "^2.0.0",
     "dayjs": "^1.11.6",
     "guid-ts": "^1.1.2",
-    "mdb-vue-ui-kit": "^3.1.1",
     "unplugin-vue-components": "^0.22.12",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",

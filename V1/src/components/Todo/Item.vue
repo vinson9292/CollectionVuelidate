@@ -1,44 +1,46 @@
 <template>
     <n-space>
         <tr>
-            <td >
-                <input type="text" v-model="Todo.Title" @blur="v$.Title.$touch"/>
+            <td>
+                <input type="text" v-model="Todo.Title" @blur="v$.Title.$touch" />
                 <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <input type="text" v-model="Todo.Decsription" @blur="v$.Decsription.$touch"/>
+                <input type="text" v-model="Todo.Decsription" @blur="v$.Decsription.$touch" />
                 <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <n-date-picker  
-                v-model:value="Todo.StartTime"
-                type="date"
-                 @blur="v$.StartTime.$touch"/>
+                <n-date-picker v-model:value="Todo.StartTime" type="date" @blur="v$.StartTime.$touch" />
                 <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <n-date-picker  
-                v-model:value="Todo.EndTime"
-                type="datetime"
-                 @blur="v$.EndTime.$touch"/>
+                <n-date-picker v-model:value="Todo.EndTime" type="date" @blur="v$.EndTime.$touch" />
                 <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </td>
             <td>
-                <n-button type="error" class="btn btn-primary" @click="delItem">Del</n-button>
+                <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick">
+                    <template #trigger>
+                        <n-button type="error" class="btn btn-primary">
+                            Del
+                        </n-button>
+                    </template>
+                    一切都将一去杳然，任何人都无法将其捕获。
+                </n-popconfirm>
             </td>
         </tr>
     </n-space>
+
 </template>
 <script lang="ts">
-import { defineComponent, reactive ,ref} from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { useMessage } from 'naive-ui'
 import { NButton } from 'naive-ui'
 import type { ITodo } from '../../types/Interface/ITodo'
@@ -66,7 +68,7 @@ export default defineComponent({
     },
     setup(props) {
         const state = reactive(props.Todo)
-        // const message = useMessage()
+        const message = useMessage()
         const min = (param: number) =>
             helpers.withParams(
                 { type: 'min', value: param },
@@ -80,16 +82,19 @@ export default defineComponent({
         }
 
         const v$ = useVuelidate(rules, state)
-        const delItem = () => {
-            if (window.confirm('確認要刪除?')) {
-                props.deleteItem(props.index);
-            }
-        }
         return {
             state,
-            delItem,
             v$,
-            range: ref<[number, number]>([props.Todo.StartTime, Date.now()])
+            handlePositiveClick() {
+                props.deleteItem(props.index);
+                message.info('完成');
+            },
+            handleNegativeClick() {
+                message.info('取消')
+            },
+            range: ref<[number, number]>([props.Todo.StartTime, Date.now()]),
+
+
         }
     }
 })

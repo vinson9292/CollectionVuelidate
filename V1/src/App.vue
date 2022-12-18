@@ -1,37 +1,39 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <TodoInfo :case-no="caseNo" />
+  <n-message-provider>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <TodoInfo :case-no="caseNo" />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <!-- <AppraisalInfo :case-no="caseNo" /> -->
+      <div class="row">
+        <div class="col">
+          <!-- <AppraisalInfo :case-no="caseNo" /> -->
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <!-- <PropertyInfo :case-no="caseNo" /> -->
+      <div class="row">
+        <div class="col">
+          <!-- <PropertyInfo :case-no="caseNo" /> -->
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <!-- <CheckingInfo :case-no="caseNo" /> -->
+      <div class="row">
+        <div class="col">
+          <!-- <CheckingInfo :case-no="caseNo" /> -->
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <!-- <AppraisalInfo :case-no="caseNo" /> -->
+      <div class="row">
+        <div class="col">
+          <!-- <AppraisalInfo :case-no="caseNo" /> -->
+        </div>
       </div>
-    </div>
-    <!-- <div class="thead">
+      <!-- <div class="thead">
       <div class="footer-space">&nbsp;</div>
     </div> -->
 
-    <div class="header">案號 : {{ caseNo }}</div>
-    <div class="footer">案號 : {{ caseNo }}</div>
-  </div>
+      <div class="header">案號 : {{ caseNo }}</div>
+      <div class="footer">案號 : {{ caseNo }}</div>
+    </div>
+  </n-message-provider>
 </template>
 
 <script lang="ts">
@@ -49,9 +51,8 @@ export default defineComponent({
     PropertyInfo,
     CheckingInfo
   },
-  compatConfig: { MODE: 3 },
   setup() {
-    const caseNo = ref('A1234567890')
+    const caseNo = ref('A1234567890');
     return {
       caseNo
     }
@@ -64,13 +65,14 @@ export default defineComponent({
 }
 
 @media screen {
+
   .header,
   .footer {
     display: none;
   }
 }
 
-@media print { 
+@media print {
   .header {
     display: block;
     position: fixed;

@@ -51,7 +51,6 @@ export default defineComponent({
             console.log('vm.items',vm.items);
             if (response) {
                 saveItems('TodoInfo', vm.items);
-                vm.items.push(new Todo())
             }
         }
 
@@ -75,7 +74,7 @@ export default defineComponent({
 })
 </script>
 <style>
-.listBorder {
+/* .listBorder {
     margin-top: 10px;
     border: 15px;
 }
@@ -89,5 +88,5 @@ export default defineComponent({
 }
 .btn-group{
     margin: 0.25rem 0.125rem
-}
+} */
 </style>
