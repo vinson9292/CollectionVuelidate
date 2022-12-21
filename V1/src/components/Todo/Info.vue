@@ -1,10 +1,16 @@
 <template>
     <div class="">
         <h2>願望清單</h2>
+        <!-- <h4>
+            上主，求祢恩賜我們在平安中，在快樂中度過這一天；不要讓我們遭受創傷；不要讓我們沾染罪污。<br />
+            讓我們克服一切煩惱的困擾，並遠離罪惡的誘惑，能使我們今天歡欣的向祢謳歌讚頌。<br />
+            上主，我們的天主，祢是照顧萬物的慈父，願祢永遠受讚美。阿們。<br />
+        </h4> -->
         <h4>
-            上主，求祢恩賜我們在平安中，在快樂中度過這一天；不要讓我們遭受創傷；不要讓我們沾染罪污。<br/>
-            讓我們克服一切煩惱的困擾，並遠離罪惡的誘惑，能使我們今天歡欣的向祢謳歌讚頌。<br/>
-            上主，我們的天主，祢是照顧萬物的慈父，願祢永遠受讚美。阿們。<br/>
+        <div style="width:70%">
+                {{day1.mantra }}
+        </div>
+
         </h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <n-button type="primary" v-on:click="add">add</n-button>
@@ -19,6 +25,7 @@ import TodoList from './List.vue'
 import { Todo } from '../../types/Todo'
 import { useVuelidate } from '@vuelidate/core'
 import { saveItems, readItems } from '../../utils/RecommentdationStore'
+import prays from '../../data/pray.json'
 
 export default defineComponent({
     name: 'TodoInfo',
@@ -36,7 +43,9 @@ export default defineComponent({
         const vm = reactive<{ items: Array<Todo> }>({
             items: []
         });
-
+        const prayForToday = prays;
+        const day1 = prayForToday.prays[Math.floor(Math.random() * 15)];
+        console.log(prays);
         const add = async () => {
             let response = await v$.value.$validate();
             if (response) {
@@ -78,25 +87,9 @@ export default defineComponent({
             deleteAll,
             deleteItem,
             save,
-            v$
+            v$,
+            day1
         }
     }
 })
 </script>
-<style>
-/* .listBorder {
-    margin-top: 10px;
-    border: 15px;
-}
-.bd-example{
-    padding: 1.5rem;
-    margin-right: 0;
-    margin-left: 0;
-    border-width: 1px;
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
-}
-.btn-group{
-    margin: 0.25rem 0.125rem
-} */
-</style>
