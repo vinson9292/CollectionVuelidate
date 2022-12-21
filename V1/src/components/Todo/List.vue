@@ -1,14 +1,8 @@
 <template>
-    <table class="table-success">
-        <TodoItem 
-        v-for="(item,index) in items" 
-        :Todo="item"
-        :add="add"
-        :deleteItem="deleteItem"
-        :savel="save"
-        :index="index"
-        />
-    </table>
+    <div>
+        <TodoItem v-for="(item, index) in items" :Todo="item" :add="add" :deleteItem="deleteItem" :savel="save"
+            :index="index" />
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -18,6 +12,6 @@ export default defineComponent({
     components: {
         TodoItem
     },
-    props: ['items','add','deleteItem','save']
+    props: ['items', 'add', 'deleteItem', 'save']
 })
 </script>

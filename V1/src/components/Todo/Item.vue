@@ -1,42 +1,41 @@
 <template>
-    <n-space>
-        <tr>
-            <td>
-                <input type="text" v-model="Todo.Title" @blur="v$.Title.$touch" />
-                <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
-                    <div class="error-msg">{{ error.$message }}</div>
-                </div>
-            </td>
-            <td>
-                <input type="text" v-model="Todo.Decsription" @blur="v$.Decsription.$touch" />
-                <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
-                    <div class="error-msg">{{ error.$message }}</div>
-                </div>
-            </td>
-            <td>
-                <n-date-picker v-model:value="Todo.StartTime" type="date" @blur="v$.StartTime.$touch" />
-                <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
-                    <div class="error-msg">{{ error.$message }}</div>
-                </div>
-            </td>
-            <td>
-                <n-date-picker v-model:value="Todo.EndTime" type="date" @blur="v$.EndTime.$touch" />
-                <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
-                    <div class="error-msg">{{ error.$message }}</div>
-                </div>
-            </td>
-            <td>
-                <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick">
-                    <template #trigger>
-                        <n-button type="error" class="btn btn-primary">
-                            Del
-                        </n-button>
-                    </template>
-                    一切都将一去杳然，任何人都无法将其捕获。
-                </n-popconfirm>
-            </td>
-        </tr>
-    </n-space>
+    <n-form inline>
+        <div style="width:20%">
+            <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
+            <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div style="width:50%">
+            <n-input type="text" v-model:value="Todo.Decsription" @blur="v$.Decsription.$touch" />
+            <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div style="width:10%">
+            <n-date-picker v-model:value="Todo.StartTime" type="date" @blur="v$.StartTime.$touch" />
+            <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div style="width:10%">
+            <n-date-picker v-model:value="Todo.EndTime" type="date" @blur="v$.EndTime.$touch" />
+            <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+
+        </div>
+        <div style="width:10%">
+            <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick">
+                <template #trigger>
+                    <n-button type="error" class="btn btn-primary">
+                        Del
+                    </n-button>
+                </template>
+                一切都將一去杳然，任何人都無法將其捕獲。
+            </n-popconfirm>
+        </div>
+    </n-form>
 
 </template>
 <script lang="ts">

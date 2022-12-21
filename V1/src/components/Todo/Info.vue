@@ -1,16 +1,10 @@
 <template>
     <div class="">
         <h2>願望清單</h2>
-        <!-- <h4>
-            上主，求祢恩賜我們在平安中，在快樂中度過這一天；不要讓我們遭受創傷；不要讓我們沾染罪污。<br />
-            讓我們克服一切煩惱的困擾，並遠離罪惡的誘惑，能使我們今天歡欣的向祢謳歌讚頌。<br />
-            上主，我們的天主，祢是照顧萬物的慈父，願祢永遠受讚美。阿們。<br />
-        </h4> -->
         <h4>
-        <div style="width:70%">
+        <div style="width:90%">
                 {{day1.mantra }}
         </div>
-
         </h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <n-button type="primary" v-on:click="add">add</n-button>
