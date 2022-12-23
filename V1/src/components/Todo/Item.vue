@@ -1,42 +1,54 @@
 <template>
-    <n-form inline>
-        <div style="width:20%">
-            <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
-            <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
+    <n-space>
+        <div>
+            <div>
+                <n-form inline>
+                    <div style="width:20%">
+                        <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
+                        <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                    </div>
+                    <div style="width:40%">
+                        <n-input maxlength="40" type="text" v-model:value="Todo.Decsription"
+                            @blur="v$.Decsription.$touch" />
+                        <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                    </div>
+                    <div style="width:10%">
+                        <n-date-picker v-model:value="Todo.StartTime" type="date" @blur="v$.StartTime.$touch" />
+                        <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                    </div>
+                    <div style="width:10%">
+                        <n-date-picker v-model:value="Todo.EndTime" type="date" @blur="v$.EndTime.$touch" />
+                        <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                    </div>
+                    <div style="width:20%">
+                        <n-button type="primary" @click="showDSection">
+                            Detail
+                        </n-button>
+                        <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick">
+                            <template #trigger>
+                                <n-button type="error">
+                                    Del
+                                </n-button>
+                            </template>
+                            一切都將一去杳然，任何人都無法將其捕獲。
+                        </n-popconfirm>
+                    </div>
+                </n-form>
+            </div>
+            <div v-show="isShowDSection"  id="DSection" style="width:90%">
+                <n-input type="textarea" v-model:value="Todo.Detail" maxlength="500" show-count />
             </div>
         </div>
-        <div style="width:50%">
-            <n-input type="text" v-model:value="Todo.Decsription" @blur="v$.Decsription.$touch" />
-            <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </div>
-        <div style="width:10%">
-            <n-date-picker v-model:value="Todo.StartTime" type="date" @blur="v$.StartTime.$touch" />
-            <div class="input-errors" v-for="error of v$.StartTime.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </div>
-        <div style="width:10%">
-            <n-date-picker v-model:value="Todo.EndTime" type="date" @blur="v$.EndTime.$touch" />
-            <div class="input-errors" v-for="error of v$.EndTime.$errors" :key="error.$uid">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
 
-        </div>
-        <div style="width:10%">
-            <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick">
-                <template #trigger>
-                    <n-button type="error" class="btn btn-primary">
-                        Del
-                    </n-button>
-                </template>
-                一切都將一去杳然，任何人都無法將其捕獲。
-            </n-popconfirm>
-        </div>
-    </n-form>
-
+    </n-space>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
@@ -79,7 +91,10 @@ export default defineComponent({
             StartTime: { required }, // Matches props.Todo.StartTime
             EndTime: { required }, // Matches props.Todo.EndTime
         }
-
+        const isShowDSection = ref(false);
+        const showDSection = () => {
+            isShowDSection.value = !isShowDSection.value;
+        }
         const v$ = useVuelidate(rules, state)
         return {
             state,
@@ -92,8 +107,8 @@ export default defineComponent({
                 message.info('取消')
             },
             range: ref<[number, number]>([props.Todo.StartTime, Date.now()]),
-
-
+            isShowDSection,
+            showDSection
         }
     }
 })
