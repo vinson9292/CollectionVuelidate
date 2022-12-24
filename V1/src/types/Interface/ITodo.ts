@@ -4,5 +4,5 @@ export interface ITodo extends IBase {
     Decsription: string;
     StartTime: number;
     EndTime: number;
-    Detail:string;
+    Detail?:string;
 }

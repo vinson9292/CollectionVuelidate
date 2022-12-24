@@ -1,15 +1,18 @@
 <template>
-    <div class="">
+    <div>
         <h2>願望清單</h2>
         <h4>
-            <div style="width:90%">
-                {{ pray.mantra }}
-            </div>
+            {{ pray.mantra }}
         </h4>
-        <TodoList :items="vm.items" :deleteItem="deleteItem" />
-        <n-button type="primary" v-on:click="add">add</n-button>
-        <n-button type="primary" v-on:click="save">save</n-button>
-        <n-button type="primary" v-on:click="deleteAll">cleraAll</n-button>
+        <n-divider />
+        <div>
+            <TodoList :items="vm.items" :deleteItem="deleteItem" />
+        </div>
+        <n-space>
+            <n-button type="success" v-on:click="add"><i class="fa-solid fa-plus"></i>&nbsp; Add</n-button>
+            <n-button type="info" v-on:click="save"><i class="fa-solid fa-floppy-disk"></i>&nbsp; Save</n-button>
+            <n-button type="warning" v-on:click="deleteAll"><i class="fa-solid fa-circle-xmark"></i>&nbsp; Clera All</n-button>
+        </n-space>
     </div>
 </template>
 <script lang="ts">
@@ -42,7 +45,7 @@ export default defineComponent({
             let hour = currenTime.getHours();
             let min = currenTime.getMinutes();
             let sec = currenTime.getSeconds();
-            let timeString = hour.toString().padStart(2,'0') + ":" + min.toString().padStart(2,'0') + ":" + sec.toString().padStart(2,'0');
+            let timeString = hour.toString().padStart(2, '0') + ":" + min.toString().padStart(2, '0') + ":" + sec.toString().padStart(2, '0');
             return timeString;
         }
         const prayForToday = prays.prays.filter(x => getTimeString() > x.startTime && getTimeString() < x.endTime);
@@ -94,3 +97,8 @@ export default defineComponent({
     }
 })
 </script>
+<style scope>
+.row-item {
+    margin-bottom: 5px;
+}
+</style>

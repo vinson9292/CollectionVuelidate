@@ -26,9 +26,6 @@
           <!-- <AppraisalInfo :case-no="caseNo" /> -->
         </div>
       </div>
-      <!-- <div class="thead">
-      <div class="footer-space">&nbsp;</div>
-    </div> -->
 
       <div class="header">案號 : {{ caseNo }}</div>
       <div class="footer">案號 : {{ caseNo }}</div>

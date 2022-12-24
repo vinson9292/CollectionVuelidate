@@ -14,5 +14,5 @@ export class Todo extends Base implements ITodo {
     Decsription: string
     StartTime: number
     EndTime: number
-    Detail:string
+    Detail?:string
 }
