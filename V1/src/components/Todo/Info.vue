@@ -2,9 +2,9 @@
     <div class="">
         <h2>願望清單</h2>
         <h4>
-        <div style="width:90%">
-                {{day1.mantra }}
-        </div>
+            <div style="width:90%">
+                {{ pray.mantra }}
+            </div>
         </h4>
         <TodoList :items="vm.items" :deleteItem="deleteItem" />
         <n-button type="primary" v-on:click="add">add</n-button>
@@ -37,9 +37,16 @@ export default defineComponent({
         const vm = reactive<{ items: Array<Todo> }>({
             items: []
         });
-        const prayForToday = prays;
-        const day1 = prayForToday.prays[Math.floor(Math.random() * 15)];
-        console.log(prays);
+        const getTimeString = (): string => {
+            let currenTime = new Date();
+            let hour = currenTime.getHours();
+            let min = currenTime.getMinutes();
+            let sec = currenTime.getSeconds();
+            let timeString = hour.toString().padStart(2,'0') + ":" + min.toString().padStart(2,'0') + ":" + sec.toString().padStart(2,'0');
+            return timeString;
+        }
+        const prayForToday = prays.prays.filter(x => getTimeString() > x.startTime && getTimeString() < x.endTime);
+        const pray = prayForToday[Math.floor(Math.random() * prayForToday.length)];
         const add = async () => {
             let response = await v$.value.$validate();
             if (response) {
@@ -73,7 +80,6 @@ export default defineComponent({
                 vm.items = readItems('TodoInfo');
             }, 500)
         });
-
         return {
             vm,
             ...toRefs(vm.items),
@@ -82,7 +88,8 @@ export default defineComponent({
             deleteItem,
             save,
             v$,
-            day1
+            pray,
+            getTimeString
         }
     }
 })
