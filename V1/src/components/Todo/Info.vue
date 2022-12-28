@@ -4,8 +4,16 @@
         <h4>
             {{ pray.mantra }}
         </h4>
-        <n-divider />
-        <div>
+        <n-button strong secondary round type="primary" @click="activate">
+            日日是好日，毎日が素敵で素晴らしい日である，良い日になるように、毎日努力することが大切だ,どんな日でも大切な日なので、そのままを受け入れよう
+        </n-button>
+        <div v-show="active">
+            <n-calendar v-model:value="value" #="{ year, month, date }" :is-date-disabled="isDateDisabled"
+                @update:value="handleUpdateValue">
+                {{ year }}-{{ month }}-{{ date }}
+            </n-calendar>
+        </div>
+        <div style="margin:5px;">
             <TodoList :items="vm.items" :deleteItem="deleteItem" />
         </div>
         <n-space>
@@ -17,13 +25,15 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs, watch, ref } from 'vue'
 import { NButton } from 'naive-ui'
 import TodoList from './List.vue'
 import { Todo } from '../../types/Todo'
 import { useVuelidate } from '@vuelidate/core'
 import { saveItems, readItems } from '../../utils/RecommentdationStore'
 import prays from '../../data/pray.json'
+import { isYesterday, addDays } from 'date-fns/esm'
+import { useMessage } from 'naive-ui'
 
 export default defineComponent({
     name: 'TodoInfo',
@@ -38,6 +48,10 @@ export default defineComponent({
         }
     },
     setup(props) {
+        const active = ref(false)
+        const activate = () => {
+            active.value = !active.value;
+        }
         const vm = reactive<{ items: Array<Todo> }>({
             items: []
         });
@@ -93,7 +107,22 @@ export default defineComponent({
             save,
             v$,
             pray,
-            getTimeString
+            getTimeString,
+            active,
+            activate,
+            value: ref(addDays(Date.now(), 1).valueOf()),
+            handleUpdateValue(
+                _: number,
+                { year, month, date }: { year: number; month: number; date: number }
+            ) {
+                // message.success(`${year}-${month}-${date}`)
+            },
+            isDateDisabled(timestamp: number) {
+                if (isYesterday(timestamp)) {
+                    return true
+                }
+                return false
+            }
         }
     }
 })
