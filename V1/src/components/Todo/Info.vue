@@ -11,7 +11,8 @@
         <n-space>
             <n-button type="success" v-on:click="add"><i class="fa-solid fa-plus"></i>&nbsp; Add</n-button>
             <n-button type="info" v-on:click="save"><i class="fa-solid fa-floppy-disk"></i>&nbsp; Save</n-button>
-            <n-button type="warning" v-on:click="deleteAll"><i class="fa-solid fa-circle-xmark"></i>&nbsp; Clera All</n-button>
+            <n-button type="warning" v-on:click="deleteAll"><i class="fa-solid fa-circle-xmark"></i>&nbsp; Clera
+                All</n-button>
         </n-space>
     </div>
 </template>

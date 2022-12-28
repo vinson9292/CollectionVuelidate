@@ -10,7 +10,7 @@
                         <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
                     </n-form-item>
                     <n-form-item path="Todo.Decsription" label="描敍">
-                        <n-input style="width:360px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
+                        <n-input style="width:280px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
                             @blur="v$.Decsription.$touch" />
                     </n-form-item>
                     <n-form-item style="width:120px;" path="Todo.StartTime" label="開始日期">
@@ -60,7 +60,7 @@
                     <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                         <div class="error-msg">{{ error.$message }}</div>
                     </div>
-                    <n-input style="width:360px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
+                    <n-input style="width:280px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
                         @blur="v$.Decsription.$touch" />
                     <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
                         <div class="error-msg">{{ error.$message }}</div>
@@ -105,8 +105,15 @@
             <n-form-item path="Todo.Detail" label="詳細資訊">
                 <n-input type="textarea" v-model:value="Todo.Detail" maxlength="500" show-count />
             </n-form-item>
+
+        </div>
+        <div v-show="isShowDSection">
+            <n-upload action="/upload">
+                <n-button>上传文件</n-button>
+            </n-upload>
         </div>
     </div>
+
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
@@ -116,6 +123,7 @@ import type { ITodo } from '../../types/Interface/ITodo'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 import type { CountdownInst } from 'naive-ui'
+import type { UploadFileInfo } from 'naive-ui'
 
 export default defineComponent({
     name: 'TodoItem',
@@ -160,6 +168,11 @@ export default defineComponent({
         function handleReset() {
             countdownRef.value?.reset()
         }
+        const fileListRef = ref<UploadFileInfo[]>([
+        ])
+        const handleDownload = (file: UploadFileInfo) => {
+            message.success(`下载成功：${file.name}`)
+        }
         return {
             state,
             v$,
@@ -175,7 +188,9 @@ export default defineComponent({
             showDSection,
             active: activeRef,
             countdown: countdownRef,
-            handleReset
+            handleReset,
+            fileList: fileListRef,
+            handleDownload
         }
     }
 })
