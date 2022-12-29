@@ -10,7 +10,7 @@
                         <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
                     </n-form-item>
                     <n-form-item path="Todo.Decsription" label="描敍">
-                        <n-input style="width:280px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
+                        <n-input style="width:250px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
                             @blur="v$.Decsription.$touch" />
                     </n-form-item>
                     <n-form-item style="width:120px;" path="Todo.StartTime" label="開始日期">
@@ -60,7 +60,7 @@
                     <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
                         <div class="error-msg">{{ error.$message }}</div>
                     </div>
-                    <n-input style="width:280px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
+                    <n-input style="width:250px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
                         @blur="v$.Decsription.$touch" />
                     <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
                         <div class="error-msg">{{ error.$message }}</div>
