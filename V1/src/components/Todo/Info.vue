@@ -68,7 +68,7 @@ export default defineComponent({
         const add = async () => {
             let response = await v$.value.$validate();
             if (response) {
-                vm.items.push(new Todo())
+                vm.items.push(new Todo());
             }
         }
         const deleteAll = () => {
@@ -80,8 +80,7 @@ export default defineComponent({
         }
         const save = async () => {
             let response = await v$.value.$validate();
-            console.log('response', response);
-            console.log('vm.items', vm.items);
+            vm.items.forEach((e,i)=>{e.Sort = i});
             if (response) {
                 saveItems('TodoInfo', vm.items);
             }

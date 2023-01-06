@@ -56,14 +56,18 @@
                     <div style="width:15px;">
                         <span>{{ index + 1 }}</span>
                     </div>
-                    <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
-                    <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div>
+                        <n-input type="text" v-model:value="Todo.Title" @blur="v$.Title.$touch" />
+                        <div class="input-errors" v-for="error of v$.Title.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
                     </div>
-                    <n-input style="width:250px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
-                        @blur="v$.Decsription.$touch" />
-                    <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div>
+                        <n-input style="width:250px;" maxlength="40" type="text" v-model:value="Todo.Decsription"
+                            @blur="v$.Decsription.$touch" />
+                        <div class="input-errors" v-for="error of v$.Decsription.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
                     </div>
                     <n-date-picker style="width:120px;" v-model:value="Todo.StartTime" type="date"
                         @blur="v$.StartTime.$touch" />
@@ -105,7 +109,6 @@
             <n-form-item path="Todo.Detail" label="詳細資訊">
                 <n-input type="textarea" v-model:value="Todo.Detail" maxlength="500" show-count />
             </n-form-item>
-
         </div>
         <div v-show="isShowDSection">
             <n-upload action="/upload">
@@ -173,6 +176,7 @@ export default defineComponent({
         const handleDownload = (file: UploadFileInfo) => {
             message.success(`下载成功：${file.name}`)
         }
+
         return {
             state,
             v$,
